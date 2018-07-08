@@ -1,0 +1,13 @@
+{
+  "name": "client",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "watch-sass": "sass --watch ./assets/scss/main.scss:./../static/bundle.css --source-map-urls absolute  --load-path node_modules"
+  },
+  "dependencies": {
+    "bulma": "^0.7.1",
+    "sass": "^1.9.0"
+  }
+}

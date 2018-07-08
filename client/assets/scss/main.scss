@@ -1,0 +1,16 @@
+@import 'a.scss';
+@import 'bulma/bulma.sass';
+.d {
+  color: red;
+}
+
+@for $i from 1 through 8 {
+  @each $alias, $direction in (l, left), (r, right), (t, top), (b, bottom) {
+    .m#{$alias}#{$i*2} { margin-#{$direction}: 2px * $i; }
+    .p#{$alias}#{$i*2} { padding-#{$direction}: 2px * $i; }
+  }
+}
+
+.container.no-element-before {
+  margin-top: 1rem;
+}

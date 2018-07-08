@@ -1,0 +1,36 @@
+version: '3'
+
+services:
+  postgres:
+    image: postgres:10.0-alpine
+    environment:
+      POSTGRES_PASSWORD: resp
+      POSTGRES_USER: resp
+      POSTGRES_DB: resp
+    ports:
+      - 5433:5432
+    volumes:
+      - data:/var/lib/postgresql/data
+    restart: always
+  redis:
+    image: redis:alpine
+    environment:
+      - REDIS_PASSWORD=resp
+    ports:
+      - 6379:6379
+    command: ["redis-server", "--appendonly", "yes"]
+    volumes:
+      - redis-data:/data
+  pgadmin:
+    image: dpage/pgadmin4
+    ports:
+      - "5052:80"
+    links:
+      - postgres:db
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=pgadmin4@pgadmin.org
+      - PGADMIN_DEFAULT_PASSWORD=admin
+    restart: unless-stopped
+volumes:
+  data:
+  redis-data:

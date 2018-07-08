@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Parser HTML to Yew html! macro</title>
+    <style>
+        textarea {
+            height: 50em;
+            width: 50em;
+        }
+    </style>
+</head>
+<body>
+    <textarea id="input"></textarea>
+    <textarea id="ouput"></textarea>
+    <button id="parse" onclick="parse()">Parse</button>
+    <script src="htmlparser.js"></script>
+    <script>
+        function parse() {
+            var handler = new Tautologistics.NodeHtmlParser.HtmlBuilder(function (error, dom) {
+                console.log(error, dom);
+            });
+            var parser = new Tautologistics.NodeHtmlParser.Parser(handler);
+            parser.parseComplete(document.getElementById("input").value);
+            var result = '';
+            handler.dom.forEach(function(data) {
+                switch (data.type) {
+                    case 'text':
+                        result += data.data;
+                    case 'tag':
+
+                }
+            })
+        }
+    </script>
+</body>
+</html>

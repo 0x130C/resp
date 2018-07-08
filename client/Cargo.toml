@@ -1,0 +1,22 @@
+[package]
+name = "app"
+version = "0.1.0"
+authors = ["Felix Truong <felixtruong@hotmail.com>"]
+
+[dependencies]
+yew = { git="https://github.com/DenisKolodin/yew.git" }
+stdweb = "0.4.7"
+serde = "1.0.69"
+serde_derive = "1.0.69"
+log = "0.4.3"
+web_logger = "0.1.0"
+pulldown-cmark = "0.1.2"
+
+
+[lib]
+name = "applib"
+path = "src/lib/mod.rs"
+
+[[bin]]
+name = "app"
+path = "src/main.rs"
