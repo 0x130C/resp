@@ -18,37 +18,46 @@ impl Component for AdminPanel {
 impl Renderable<AdminPanel> for AdminPanel {
     fn view(&self) -> Html<AdminPanel> {
         html! {
-            <section class="no-element-before container",>
-                <div class="columns",>
-                    <div class="column is-one-quarter",>
-                        <h4 class="title is-4 logo",>
-                            <a href="/",>
-                                <span class="icon",>
-                                    <i class="fas fa-cog fa-spin",></i>
-                                </span>
-                                {" Respx"}
+        <div id="app",>
+            <section class="hero app-header animated slideInDown",>
+                <div class="hero-head",>
+                    <div class="nav app-navbar",>
+                        <div class="nav-left",>
+                            <a class="nav-item is-hidden-tablet",>
+                                <i aria-hidden="true", class="fa fa-bars",></i>
                             </a>
-                        </h4>
-                        <aside class="menu",>
-                            <p class="menu-label",>
-                                { "General" }
-                            </p>
-                            <ul class="menu-list",>
-                                <li><a>{"Dashboard"}</a></li>
-                                <li><a>{"Customers"}</a></li>
-                            </ul>
-                        </aside>
-                    </div>
-                    <div class="column is-three-quarters",>
-                        <nav class="breadcrumb", aria-label="breadcrumbs",>
-                            <ul>
-                                <li><a href="../",>{ "General" }</a></li>
-                                <li class="is-active",><a href="#", aria-current="page",>{"Dashboard"}</a></li>
-                            </ul>
-                        </nav>
+                        </div>
                     </div>
                 </div>
             </section>
+            <section class="app-main",>
+                <div class="container is-marginless app-content",>
+                    <nav class="breadcrumb", aria-label="breadcrumbs",>
+                        <ul>
+                            <li><a href="../",>{ "General" }</a></li>
+                            <li class="is-active",><a href="#", aria-current="page",>{"Dashboard"}</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </section>
+            <aside class="menu app-menu animated slideInLeft",>
+                <h4 class="title is-4 logo",>
+                    <a href="/",>
+                        <span class="icon",>
+                            <i class="fas fa-cog fa-spin",></i>
+                        </span>
+                        {" Respx"}
+                    </a>
+                </h4>
+                <p class="menu-label",>
+                    { "General" }
+                </p>
+                <ul class="menu-list",>
+                    <li><a>{"Dashboard"}</a></li>
+                    <li><a>{"Customers"}</a></li>
+                </ul>
+            </aside>
+            </div>
         }
     }
 }

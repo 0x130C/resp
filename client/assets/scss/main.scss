@@ -1,16 +1,41 @@
-@import 'a.scss';
+@import 'mixins.scss';
+@import 'themes.scss';
 @import 'bulma/bulma.sass';
-.d {
-  color: red;
+@import 'helpers.scss';
+@import 'animate.scss';
+@import 'base.scss';
+@import 'nav.scss';
+
+.app-header {
+  position: fixed;
+  min-width:100%;
+  background-color: #fff;
+  z-index: 1020;
+  box-shadow: 0 2px 3px hsla(0,0%,7%,.1), 0 0 0 1px hsla(0,0%,7%,.1);
 }
 
-@for $i from 1 through 8 {
-  @each $alias, $direction in (l, left), (r, right), (t, top), (b, bottom) {
-    .m#{$alias}#{$i*2} { margin-#{$direction}: 2px * $i; }
-    .p#{$alias}#{$i*2} { padding-#{$direction}: 2px * $i; }
+.app-main {
+  margin-left: 14em;
+  padding-top: 3.25rem;
+  transform: translateZ(0);
+  @include mobile() {
+    margin-left: 0;
   }
 }
 
-.container.no-element-before {
-  margin-top: 1rem;
+.app-content {
+  padding: 20px;
+}
+
+.app-menu {
+  position: fixed;
+  top: 3.25rem;
+  padding: 1.5rem 0 4rem;
+  height: calc(100% - 3.25rem);
+  width: 14em;
+  max-width: 90vw;
+  background-color: #fff;
+  .menu-label, .title {
+    padding-left: 5px;
+  }
 }

@@ -1,0 +1,24 @@
+$themes: () !global;
+@import 'themes/dark';
+@import 'themes/light';
+@import 'themes/default';
+
+@mixin themify() {
+  @each $theme, $map in $themes {
+
+    .theme__#{$theme} & {
+      $theme-map: () !global;
+      @each $key, $submap in $map {
+        $value: map-get(map-get($themes, $theme), '#{$key}');
+        $theme-map: map-merge($theme-map, ($key: $value)) !global;
+      }
+      @content;
+      $theme-map: () !global;
+    }
+
+  }
+}
+
+@function themed($key) {
+  @return map-get($theme-map, $key);
+}

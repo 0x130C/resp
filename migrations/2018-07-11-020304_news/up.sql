@@ -1,3 +1,5 @@
+CREATE TYPE article_state AS ENUM ('draft', 'published');
+
 CREATE TABLE article (
     id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
     slug VARCHAR NOT NULL,

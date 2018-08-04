@@ -1,0 +1,3 @@
+$themes: () !default;
+$default_theme: map-get($themes, "light");
+$themes: map-merge($themes, ("default" : $default_theme));

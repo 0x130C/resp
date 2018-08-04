@@ -1,0 +1,18 @@
+.nav {
+  display: flex;
+  align-items: stretch;
+  min-height: 3.25rem;
+}
+.nav-left {
+  display: flex;
+  justify-content: flex-start;
+}
+.nav-right {
+  display: flex;
+  justify-content: flex-end;
+}
+.nav-item {
+  padding: .5rem .75rem;
+  display: flex;
+  align-items: center;
+}
