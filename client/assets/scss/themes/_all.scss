@@ -3,6 +3,7 @@ $themes: () !global;
 @import 'themes/light';
 @import 'themes/default';
 
+
 @mixin themify() {
   @each $theme, $map in $themes {
 
@@ -18,7 +19,7 @@ $themes: () !global;
 
   }
 }
-
+/*Function using in themify mixin content*/
 @function themed($key) {
   @return map-get($theme-map, $key);
 }

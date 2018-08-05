@@ -21,7 +21,7 @@ fn sass_options() -> sass_rs::Options {
 }
 
 fn sass_compile() -> Result<(), SassOutputError> {
-    let compiled = sass_rs::compile_file("../client/assets/scss/main.scss", sass_options())?;
+    let compiled = sass_rs::compile_file("../client/assets/scss/app.scss", sass_options())?;
     let mut file = File::create("../static/bundle.css")?;
     file.write_all(compiled.as_bytes())?;
     Ok(())

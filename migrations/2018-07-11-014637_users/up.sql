@@ -7,7 +7,7 @@ CREATE TABLE IF NOT EXISTS user_profile (
     bio VARCHAR
 );
 
-CREATE TABLE "user" (
+CREATE TABLE "users" (
   id uuid primary key default gen_random_uuid(),
   username VARCHAR NOT NULL,
   password VARCHAR NOT NULL,

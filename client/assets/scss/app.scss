@@ -1,0 +1,29 @@
+@import 'vendors/bulma';
+@import 'helpers/all';
+@import 'base/all';
+@import 'modules/animate';
+@import 'modules/nav';
+
+.app-header {
+  position: fixed;
+  min-width:100%;
+  background-color: #fff;
+}
+
+.app-main {
+  margin-left: 14em;
+  padding-top: 3.25rem;
+}
+
+.app-content {
+  padding: 20px;
+}
+
+.app-menu {
+  position: fixed;
+  top: 3.25rem;
+  height: calc(100% - 3.25rem);
+  width: 14em;
+  max-width: 90vw;
+  background-color: #fff;
+}

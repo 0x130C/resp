@@ -1,5 +1,9 @@
+use diesel::prelude::*;
+
 use super::schema::article;
 use chrono::NaiveDateTime;
+
+pub mod users;
 
 #[derive(DbEnum, Debug, PartialEq)]
 pub enum StateEnum {
@@ -17,3 +21,4 @@ pub struct Article {
     updated_at: NaiveDateTime,
     state: StateEnum
 }
+

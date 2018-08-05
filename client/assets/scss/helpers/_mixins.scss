@@ -1,3 +1,16 @@
+
+@mixin e($name) {
+  @at-root #{&}__#{$name} {
+    @content;
+  }
+}
+
+@mixin m($name) {
+  @at-root #{&}--#{$name} {
+    @content;
+  }
+}
+
 @for $i from 1 through 8 {
   @each $alias, $direction in (l, left), (r, right), (t, top), (b, bottom) {
     .m#{$alias}#{$i*2} { margin-#{$direction}: 2px * $i; }

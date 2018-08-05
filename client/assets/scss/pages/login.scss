@@ -1,0 +1,8 @@
+@import '../vendors/bulma';
+@import '../helpers/all';
+@import '../base/all';
+@import '../modules/animate';
+
+.hero.is-success {
+  background-color: #F2F6FA;
+}

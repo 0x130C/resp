@@ -7,7 +7,7 @@ function run() {
     fi
     cargo watch -w src -s 'cp ./target/wasm32-unknown-unknown/release/app.* ../static && notify-send "Client build completed"' -x '+nightly web build --release' &
     P1=$!
-    yarn watch-sass &
+    yarn watch-all-sass &
     P2=$!
     trap "kill $P1 $P2" SIGINT
 

@@ -27,7 +27,16 @@ table! {
 }
 
 table! {
-    user (id) {
+    user_profile (id) {
+        id -> Uuid,
+        avatar -> Nullable<Varchar>,
+        nickname -> Nullable<Varchar>,
+        bio -> Nullable<Varchar>,
+    }
+}
+
+table! {
+    users (id) {
         id -> Uuid,
         username -> Varchar,
         password -> Varchar,
@@ -40,23 +49,14 @@ table! {
     }
 }
 
-table! {
-    user_profile (id) {
-        id -> Uuid,
-        avatar -> Nullable<Varchar>,
-        nickname -> Nullable<Varchar>,
-        bio -> Nullable<Varchar>,
-    }
-}
-
 joinable!(article_news_category_rel -> article (article_id));
 joinable!(article_news_category_rel -> category (cat_id));
-joinable!(user -> user_profile (profile_id));
+joinable!(users -> user_profile (profile_id));
 
 allow_tables_to_appear_in_same_query!(
     article,
     article_news_category_rel,
     category,
-    user,
     user_profile,
+    users,
 );

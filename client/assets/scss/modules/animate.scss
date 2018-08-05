@@ -1,0 +1,31 @@
+/* Custom animate.css
+  Must import after animate.css
+*/
+@import '../vendors/animate';
+
+$animated-rate: .377 / 1;
+
+.animated {
+  animation-duration: .377s;
+  -webkit-animation-duration: .377s;
+}
+
+.animated.fast {
+  -webkit-animation-duration: $animated-rate * 800ms;
+  animation-duration: $animated-rate * 800ms;
+}
+
+.animated.faster {
+  -webkit-animation-duration: $animated-rate * 500ms;
+  animation-duration: $animated-rate * 500ms;
+}
+
+.animated.slow {
+  -webkit-animation-duration: $animated-rate * 2s;
+  animation-duration: $animated-rate * 2s;
+}
+
+.animated.slower {
+  -webkit-animation-duration: $animated-rate * 3s;
+  animation-duration: $animated-rate * 3s;
+}
