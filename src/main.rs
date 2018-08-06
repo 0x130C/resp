@@ -17,7 +17,8 @@ extern crate validator_derive;
 extern crate validator;
 extern crate env_logger;
 extern crate uuid;
-
+extern crate futures;
+#[macro_use] extern crate log;
 
 mod db;
 mod schema;
@@ -26,6 +27,7 @@ mod models;
 mod views;
 mod controllers;
 mod middlewares;
+mod extractors;
 
 use listenfd::ListenFd;
 use actix_web::actix::*;

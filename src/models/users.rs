@@ -5,6 +5,7 @@ use actix_web::actix::*;
 use db::DbExecutor;
 use chrono;
 use uuid::Uuid;
+use schema::{users, user_session};
 
 
 #[derive(Queryable, Serialize, Deserialize, Debug)]
@@ -35,8 +36,31 @@ impl Handler<UserLogin> for DbExecutor {
     type Result = Result<User, diesel::result::Error>;
 
     fn handle(&mut self, msg: UserLogin, _ctx: &mut Self::Context) -> <Self as Handler<UserLogin>>::Result {
-        use schema::users::dsl::*;
         let conn = self.get().unwrap();
-        users.filter(username.eq(msg.login)).get_result::<User>(&conn)
+        users::table.filter(users::username.eq(msg.login)).get_result::<User>(&conn)
+    }
+}
+
+#[derive(Deserialize, Queryable, Serialize, Debug)]
+pub struct UserLookup {
+    #[serde(rename = "token")]
+    pub session_id: String
+}
+
+impl Message for UserLookup {
+    type Result = Result<User, diesel::result::Error>;
+}
+
+impl Handler<UserLookup> for DbExecutor {
+    type Result = Result<User, diesel::result::Error>;
+
+    fn handle(&mut self, msg: UserLookup, _ctx: &mut Self::Context) -> <Self as Handler<UserLookup>>::Result {
+        let conn = self.get().unwrap();
+
+        users::table
+            .inner_join(user_session::table)
+            .filter(user_session::token.eq(msg.session_id))
+            .select(users::all_columns)
+            .get_result::<User>(&conn)
     }
 }

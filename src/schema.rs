@@ -36,6 +36,14 @@ table! {
 }
 
 table! {
+    user_session (token) {
+        token -> Varchar,
+        user_id -> Uuid,
+        expire -> Timestamp,
+    }
+}
+
+table! {
     users (id) {
         id -> Uuid,
         username -> Varchar,
@@ -51,6 +59,7 @@ table! {
 
 joinable!(article_news_category_rel -> article (article_id));
 joinable!(article_news_category_rel -> category (cat_id));
+joinable!(user_session -> users (user_id));
 joinable!(users -> user_profile (profile_id));
 
 allow_tables_to_appear_in_same_query!(
@@ -58,5 +67,6 @@ allow_tables_to_appear_in_same_query!(
     article_news_category_rel,
     category,
     user_profile,
+    user_session,
     users,
 );

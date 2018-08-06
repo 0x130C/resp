@@ -5,6 +5,7 @@ use actix_web::{HttpRequest, Error};
 use actix_web::middleware::session::RequestSession;
 
 use AppState;
+use models::users::{UserLookup, User};
 
 pub type UserAuthenticationResult = Box<Future<Item = User, Error = Error>>;
 
@@ -31,11 +32,11 @@ impl UserAuthentication for HttpRequest<AppState> {
     }
 
     fn user(&self) -> UserAuthenticationResult {
-        match self.session().get::<i32>("uid") {
+        match self.session().get::<String>("uid") {
             Ok(session) => { match session {
                 Some(session_id) => {
                     Box::new(self.state().db.send(UserLookup {
-                        id: session_id
+                        session_id: String::from(session_id)
                     }).from_err().and_then(|res| match res {
                         Ok(user) => Ok(user),
                         Err(err) => {
