@@ -34,7 +34,7 @@ impl Message for UserLogin {
 impl Handler<UserLogin> for DbExecutor {
     type Result = Result<User, diesel::result::Error>;
 
-    fn handle(&mut self, msg: UserLogin, ctx: &mut Self::Context) -> <Self as Handler<UserLogin>>::Result {
+    fn handle(&mut self, msg: UserLogin, _ctx: &mut Self::Context) -> <Self as Handler<UserLogin>>::Result {
         use schema::users::dsl::*;
         let conn = self.get().unwrap();
         users.filter(username.eq(msg.login)).get_result::<User>(&conn)

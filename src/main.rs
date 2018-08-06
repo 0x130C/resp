@@ -25,6 +25,7 @@ mod utils;
 mod models;
 mod views;
 mod controllers;
+mod middlewares;
 
 use listenfd::ListenFd;
 use actix_web::actix::*;
