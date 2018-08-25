@@ -20,6 +20,10 @@ extern crate env_logger;
 extern crate uuid;
 extern crate futures;
 #[macro_use] extern crate log;
+extern crate failure;
+#[macro_use]
+extern crate failure_derive;
+extern crate jsonwebtoken as jwt;
 
 mod db;
 mod schema;
@@ -27,6 +31,7 @@ mod utils;
 mod models;
 mod views;
 mod controllers;
+mod routes;
 //mod middlewares;
 //mod extractors;
 
@@ -98,6 +103,7 @@ impl Server {
                         r.method(http::Method::POST).f(login::post);
                     })
                     .handler("/", fs::StaticFiles::new("./static").unwrap())
+                    .scope("/blog", routes::blog::blog_routes)
                     .boxed()
             ];
             if let Some(_) = option_env!("DEV_MODE") {
@@ -115,7 +121,7 @@ impl Server {
         server = if let Some(l) = listenfd.take_tcp_listener(0).unwrap() {
             server.listen(l)
         } else {
-            server.bind("127.0.0.1:8090").unwrap()
+            server.bind("127.0.0.1:8080").unwrap()
         };
         server.start();
         Server {
