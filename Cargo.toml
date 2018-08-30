@@ -9,7 +9,7 @@ path = "src/main.rs"
 
 [dependencies]
 actix = "0.7.0"
-actix-web = { version = "0.7.3", features = ["alpn", "session"] }
+actix-web = { version = "0.7.3", features = ["rust-tls"] }
 diesel = { version="<= 1.3.2", features=["postgres", "r2d2", "chrono", "serde_json", "uuid"]}
 diesel-derive-enum = { version = "0.4.3", features = ["postgres"] }
 chrono = { version = "0.4.4", features = ["serde"] }
@@ -27,5 +27,9 @@ validator = "0.7.1"
 validator_derive = "0.7.2"
 uuid = { version="0.6.5", features =["serde"]}
 log = "0.4.3"
+jsonwebtoken = "5.0.0"
+failure = "0.1.2"
+time = "0.1.40"
+rustls = "0.13.1"
 
 

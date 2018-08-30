@@ -1,25 +1,26 @@
+#![allow(dead_code)]
+#![allow(proc_macro_derive_resolution_fallback)]
 extern crate actix;
 extern crate actix_web;
-extern crate listenfd;
 extern crate chrono;
-#[macro_use]
-extern crate tera;
-#[macro_use]
-extern crate diesel;
-#[macro_use]
-extern crate diesel_derive_enum;
 extern crate dotenv;
+extern crate env_logger;
+extern crate futures;
+extern crate jsonwebtoken;
+extern crate listenfd;
+extern crate rustls;
 extern crate serde;
 extern crate serde_json;
-#[macro_use]
-extern crate serde_derive;
-#[macro_use]
-extern crate validator_derive;
-extern crate validator;
-extern crate env_logger;
+extern crate time;
 extern crate uuid;
-extern crate futures;
+extern crate validator;
+#[macro_use] extern crate diesel;
+#[macro_use] extern crate diesel_derive_enum;
+#[macro_use] extern crate failure;
 #[macro_use] extern crate log;
+#[macro_use] extern crate serde_derive;
+#[macro_use] extern crate tera;
+#[macro_use] extern crate validator_derive;
 
 mod db;
 mod schema;
@@ -27,6 +28,8 @@ mod utils;
 mod models;
 mod views;
 mod controllers;
+mod token;
+mod auth;
 //mod middlewares;
 //mod extractors;
 
@@ -41,6 +44,12 @@ use actix_web::fs::{self, NamedFile};
 use actix_web::pred;
 use utils::http::redirect;
 use utils::views::render_template;
+
+// SSL
+use rustls::{ServerConfig, NoClientAuth};
+use rustls::internal::pemfile::{certs, rsa_private_keys};
+use std::io::BufReader;
+use std::fs::File;
 
 use views::login;
 
@@ -59,7 +68,7 @@ fn index(req: &HttpRequest<AppState>) -> Result<HttpResponse, Error> {
 
 
 fn get_tera_template() -> tera::Tera {
-    let mut tera:tera::Tera = compile_templates!("templates/**/*");
+    let tera:tera::Tera = compile_templates!("templates/**/*");
     //TODO: Create function addMinInProduct to add .min in assets file, ex: app.css -> app.min.css
     //        tera.register_global_function("now", tera::builtins::global_functions::make_now_fn())
     tera
@@ -111,12 +120,29 @@ impl Server {
             apps
         });
 
+        match option_env!("DEV_MODE") {
+            Some(_) => {
 
-        server = if let Some(l) = listenfd.take_tcp_listener(0).unwrap() {
-            server.listen(l)
-        } else {
-            server.bind("127.0.0.1:8090").unwrap()
-        };
+                server = if let Some(l) = listenfd.take_tcp_listener(0).unwrap() {
+                    server.listen(l)
+                } else {
+                    server.bind("127.0.0.1:8080").unwrap()
+                };
+
+            },
+            None => {
+                // load ssl keys
+                let mut svr_config = ServerConfig::new(NoClientAuth::new());
+                let cert_file = &mut BufReader::new(File::open("tls/cert.pem").unwrap());
+                let key_file = &mut BufReader::new(File::open("tls/key.pem").unwrap());
+                let cert_chain = certs(cert_file).unwrap();
+                let mut keys = rsa_private_keys(key_file).unwrap();
+                svr_config.set_single_cert(cert_chain, keys.remove(0)).unwrap();
+                server = server.bind_rustls("127.0.0.1:9443",svr_config).unwrap()
+            }
+
+        }
+
         server.start();
         Server {
             config,
@@ -127,6 +153,8 @@ impl Server {
     }
 
     pub fn start(self) -> i32 {
+        info!("starting up");
         self.inner.runner.run()
+
     }
 }
