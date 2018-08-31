@@ -13,11 +13,17 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Cargo.lock" beforeDir="false" afterPath="$PROJECT_DIR$/Cargo.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Cargo.toml" beforeDir="false" afterPath="$PROJECT_DIR$/Cargo.toml" afterDir="false" />
+<<<<<<< HEAD
       <change beforePath="$PROJECT_DIR$/src/controllers/mod.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/mod.rs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/lib.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib.rs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/utils/mod.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/mod.rs" afterDir="false" />
+=======
+      <change beforePath="$PROJECT_DIR$/src/db.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/db.rs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lib.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib.rs" afterDir="false" />
+>>>>>>> dev
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -74,6 +80,7 @@
     </session>
   </component>
   <component name="FileEditorManager">
+<<<<<<< HEAD
     <splitter split-orientation="vertical" split-proportion="0.5005549">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
@@ -192,6 +199,96 @@
         </leaf>
       </split-second>
     </splitter>
+=======
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="main.rs" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main.rs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="60">
+              <caret line="4" selection-start-line="4" selection-end-line="4" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Cargo.toml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Cargo.toml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="270">
+              <caret line="18" column="18" selection-start-line="18" selection-start-column="18" selection-end-line="18" selection-end-column="18" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="auth.rs" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/auth.rs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="260">
+              <caret line="44" column="14" lean-forward="true" selection-start-line="44" selection-start-column="14" selection-end-line="44" selection-end-column="14" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="users.rs" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/models/users.rs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="315">
+              <caret line="21" column="1" selection-start-line="21" selection-start-column="1" selection-end-line="21" selection-end-column="1" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="mod.rs" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/utils/mod.rs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="15">
+              <caret line="1" column="4" selection-start-line="1" selection-start-column="4" selection-end-line="1" selection-end-column="4" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="middlewares.rs" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/middlewares.rs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="120">
+              <caret line="8" selection-start-line="8" selection-end-line="8" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="extractors.rs" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/extractors.rs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="120">
+              <caret line="8" column="21" selection-start-line="8" selection-start-column="21" selection-end-line="8" selection-end-column="21" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="lib.rs" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/lib.rs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="465">
+              <caret line="31" column="9" selection-start-line="31" selection-start-column="9" selection-end-line="31" selection-end-column="9" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="start.sh" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/start.sh">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="150">
+              <caret line="10" column="9" selection-start-line="10" selection-start-column="9" selection-end-line="10" selection-end-column="9" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="diesel.toml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/diesel.toml">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+    </leaf>
+>>>>>>> dev
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -211,6 +308,8 @@
       <find>_parse</find>
       <find>middlewares</find>
       <find>extractors</find>
+      <find>bind_rustls</find>
+      <find>-----BEGIN RSA PRIVATE KEY-----</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -219,6 +318,10 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
+<<<<<<< HEAD
+=======
+        <option value="$PROJECT_DIR$/client/assets/scss/animate.scss" />
+>>>>>>> dev
         <option value="$PROJECT_DIR$/client/src/lib/components/admin_panel.rs" />
         <option value="$PROJECT_DIR$/client/src/lib/components/admin_panel.rs" />
         <option value="$PROJECT_DIR$/client/assets/scss/themes/dark.scss" />
@@ -245,7 +348,6 @@
         <option value="$PROJECT_DIR$/src/utils/views.rs" />
         <option value="$PROJECT_DIR$/src/views/mod.rs" />
         <option value="$PROJECT_DIR$/src/models/mod.rs" />
-        <option value="$PROJECT_DIR$/src/db.rs" />
         <option value="$PROJECT_DIR$/migrations/2018-07-11-014637_users/down.sql" />
         <option value="$PROJECT_DIR$/migrations/2018-07-11-014637_users/up.sql" />
         <option value="$PROJECT_DIR$/src/views/login.rs" />
@@ -257,9 +359,9 @@
         <option value="$PROJECT_DIR$/src/requests.rs" />
         <option value="$PROJECT_DIR$/src/middlewares.rs" />
         <option value="$PROJECT_DIR$/src/server.rs" />
-        <option value="$PROJECT_DIR$/Cargo.toml" />
         <option value="$PROJECT_DIR$/client/assets/scss/app.scss" />
         <option value="$PROJECT_DIR$/src/main.rs" />
+<<<<<<< HEAD
         <option value="$PROJECT_DIR$/src/controllers/mod.rs" />
         <option value="$PROJECT_DIR$/templates/blog/index.html" />
         <option value="$PROJECT_DIR$/src/routes/mod.rs" />
@@ -270,6 +372,17 @@
         <option value="$PROJECT_DIR$/src/utils/mod.rs" />
         <option value="$PROJECT_DIR$/src/utils/jwt.rs" />
         <option value="$PROJECT_DIR$/src/utils/config.rs" />
+=======
+        <option value="$PROJECT_DIR$/src/token.rs" />
+        <option value="$PROJECT_DIR$/src/db.rs" />
+        <option value="$PROJECT_DIR$/src/tls/cert.pem" />
+        <option value="$PROJECT_DIR$/src/tls/key.pem" />
+        <option value="$PROJECT_DIR$/tls/cert.pem" />
+        <option value="$PROJECT_DIR$/tls/key.pem" />
+        <option value="$PROJECT_DIR$/Cargo.toml" />
+        <option value="$PROJECT_DIR$/src/lib.rs" />
+        <option value="$PROJECT_DIR$/src/auth.rs" />
+>>>>>>> dev
       </list>
     </option>
   </component>
@@ -288,10 +401,10 @@
     </packageJsonPaths>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="1918" />
-    <option name="y" value="21" />
-    <option name="width" value="1924" />
-    <option name="height" value="1061" />
+    <option name="x" value="16" />
+    <option name="y" value="19" />
+    <option name="width" value="1888" />
+    <option name="height" value="1045" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="1" id="Add" />
@@ -301,7 +414,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -317,6 +429,7 @@
             <path>
               <item name="resp" type="b2602c69:ProjectViewProjectNode" />
               <item name="resp" type="462c0819:PsiDirectoryNode" />
+<<<<<<< HEAD
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="utils" type="462c0819:PsiDirectoryNode" />
             </path>
@@ -330,11 +443,15 @@
               <item name="resp" type="b2602c69:ProjectViewProjectNode" />
               <item name="resp" type="462c0819:PsiDirectoryNode" />
               <item name="templates" type="462c0819:PsiDirectoryNode" />
+=======
+              <item name="tls" type="462c0819:PsiDirectoryNode" />
+>>>>>>> dev
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -347,15 +464,15 @@
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/migrations" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/src/server" />
       <recent name="$PROJECT_DIR$/templates" />
       <recent name="$PROJECT_DIR$/client/src/lib/components" />
       <recent name="$PROJECT_DIR$/client/src/lib/services" />
-      <recent name="$PROJECT_DIR$/client/src/lib" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/migrations" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -401,33 +518,54 @@
       <workItem from="1533394798605" duration="5157000" />
       <workItem from="1533433473900" duration="20877000" />
       <workItem from="1533560233328" duration="9779000" />
+<<<<<<< HEAD
       <workItem from="1534565029201" duration="3948000" />
       <workItem from="1534748471219" duration="6065000" />
       <workItem from="1534990295681" duration="8004000" />
+=======
+      <workItem from="1534565029201" duration="3618000" />
+      <workItem from="1535246802509" duration="3822000" />
+      <workItem from="1535373819307" duration="601000" />
+      <workItem from="1535629062136" duration="3240000" />
+>>>>>>> dev
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
+<<<<<<< HEAD
     <option name="totallyTimeSpent" value="256671000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1918" y="21" width="1924" height="1061" extended-state="6" />
+=======
+    <option name="totallyTimeSpent" value="265046000" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="16" y="19" width="1888" height="1045" extended-state="6" />
+>>>>>>> dev
     <editor active="true" />
     <layout>
+      <window_info content_ui="combo" id="Project" order="3" sideWeight="0.8483563" visible="true" weight="0.23884657" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="right" id="Cargo" order="3" weight="0.32960597" />
+      <window_info anchor="right" id="LuaJ" order="4" />
+      <window_info active="true" anchor="bottom" id="Event Log" order="7" sideWeight="0.50108814" side_tool="true" visible="true" weight="0.50054526" />
+      <window_info anchor="bottom" id="Version Control" order="8" />
+      <window_info anchor="bottom" id="Run" order="2" />
       <window_info id="Structure" order="0" sideWeight="0.1516437" side_tool="true" weight="0.2284345" />
+      <window_info anchor="right" id="Terminal" order="5" sideWeight="0.6680851" visible="true" weight="0.3008705" />
       <window_info id="Favorites" order="1" side_tool="true" />
+<<<<<<< HEAD
       <window_info id="DB Browser" order="2" weight="0.32960597" />
       <window_info active="true" content_ui="combo" id="Project" order="3" sideWeight="0.8483563" visible="true" weight="0.23482428" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32824427" />
       <window_info anchor="bottom" id="Run" order="2" />
+=======
+>>>>>>> dev
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.50108814" side_tool="true" weight="0.50159067" />
-      <window_info anchor="bottom" id="Version Control" order="8" />
       <window_info anchor="bottom" id="DB Execution Console" order="9" weight="0.32977587" />
+<<<<<<< HEAD
       <window_info anchor="bottom" id="Database Changes" order="10" show_stripe_button="false" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -440,24 +578,40 @@
     <layout-to-restore>
       <window_info id="Structure" order="0" sideWeight="0.4427481" side_tool="true" visible="true" weight="0.17355822" />
       <window_info id="Favorites" order="1" side_tool="true" />
-      <window_info id="DB Browser" order="2" weight="0.32960597" />
-      <window_info active="true" content_ui="combo" id="Project" order="3" sideWeight="0.55725193" visible="true" weight="0.17355822" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32824427" />
-      <window_info anchor="bottom" id="Run" order="2" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+=======
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.50108814" side_tool="true" weight="0.31733915" />
-      <window_info anchor="bottom" id="Version Control" order="8" />
-      <window_info anchor="bottom" id="DB Execution Console" order="9" weight="0.32977587" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+>>>>>>> dev
+      <window_info id="DB Browser" order="2" weight="0.32960597" />
+      <window_info anchor="right" id="Database" order="6" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Database Changes" order="10" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32824427" />
+    </layout>
+    <layout-to-restore>
+      <window_info anchor="bottom" id="DB Execution Console" order="9" weight="0.32977587" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="bottom" id="Version Control" order="8" />
       <window_info anchor="right" id="Cargo" order="3" weight="0.32960597" />
+      <window_info active="true" content_ui="combo" id="Project" order="3" sideWeight="0.55725193" visible="true" weight="0.17355822" />
+      <window_info id="Structure" order="0" sideWeight="0.4427481" side_tool="true" visible="true" weight="0.17355822" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info id="DB Browser" order="2" weight="0.32960597" />
       <window_info anchor="right" id="LuaJ" order="4" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32824427" />
       <window_info anchor="right" id="Terminal" order="5" sideWeight="0.4968051" visible="true" weight="0.3531012" />
+      <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.50108814" side_tool="true" weight="0.31733915" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info id="Favorites" order="1" side_tool="true" />
     </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -471,7 +625,29 @@
       <path value="$PROJECT_DIR$" />
     </ignored-roots>
   </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <option name="time" value="1" />
+    </breakpoint-manager>
+  </component>
   <component name="editorHistoryManager">
+<<<<<<< HEAD
+=======
+    <entry file="file://$PROJECT_DIR$/client/assets/scss/helpers/_mixins.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="18" column="1" selection-start-line="18" selection-start-column="1" selection-end-line="18" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/assets/scss/helpers/_all.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="17" selection-start-column="17" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+>>>>>>> dev
     <entry file="file://$PROJECT_DIR$/client/assets/scss/helpers.scss" />
     <entry file="file://$PROJECT_DIR$/client/assets/scss/mixins.scss" />
     <entry file="file://$PROJECT_DIR$/client/assets/scss/themes/_all.scss">
@@ -505,28 +681,21 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/models.rs" />
+<<<<<<< HEAD
+=======
+    <entry file="file://$PROJECT_DIR$/src/utils/http.rs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" column="4" selection-start-line="3" selection-start-column="4" selection-end-line="3" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+>>>>>>> dev
     <entry file="file://$PROJECT_DIR$/resp/.env" />
     <entry file="file://$PROJECT_DIR$/resp/src/main.rs" />
     <entry file="file://$PROJECT_DIR$/resp/src/db.rs" />
     <entry file="file://$PROJECT_DIR$/.env">
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/docker-compose.yml">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/db.rs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="25" selection-start-line="25" selection-end-line="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/models/mod.rs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="3" selection-start-line="3" selection-end-line="3" selection-end-column="10" />
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/migrations/2018-07-11-020004_auth/down.sql">
       <provider selected="true" editor-type-id="text-editor">
@@ -542,9 +711,16 @@
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/static/app.cargoweb-metadata">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
+=======
+    <entry file="file://$PROJECT_DIR$/src/controllers/login.rs">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/app.cargoweb-metadata" />
+>>>>>>> dev
     <entry file="file://$PROJECT_DIR$/client/src/lib/components/mod.rs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="207">
@@ -553,6 +729,7 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/migrations/2018-07-11-014637_users/up.sql">
+<<<<<<< HEAD
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="253">
           <caret line="11" column="27" selection-start-line="11" selection-start-column="27" selection-end-line="11" selection-end-column="27" />
@@ -577,6 +754,11 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="230">
           <caret line="10" column="9" selection-start-line="10" selection-start-column="9" selection-end-line="10" selection-end-column="9" />
+=======
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" column="49" selection-start-line="3" selection-start-column="24" selection-end-line="3" selection-end-column="49" />
+>>>>>>> dev
         </state>
       </provider>
     </entry>
@@ -589,8 +771,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/migrations/2018-07-11-020304_news/up.sql">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="184">
-          <caret line="8" column="4" selection-start-line="8" selection-start-column="4" selection-end-line="8" selection-end-column="60" />
+        <state relative-caret-position="330">
+          <caret line="22" column="4" selection-start-line="22" selection-start-column="4" selection-end-line="22" selection-end-column="36" />
         </state>
       </provider>
     </entry>
@@ -611,6 +793,7 @@
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/src/middlewares.rs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="230">
@@ -650,12 +833,50 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="92">
           <caret line="4" column="71" selection-start-line="4" selection-start-column="71" selection-end-line="4" selection-end-column="71" />
+=======
+    <entry file="file://$PROJECT_DIR$/client/assets/scss/app.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="25" column="14" lean-forward="true" selection-start-line="25" selection-start-column="14" selection-end-line="25" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/mod.rs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="14" selection-start-column="14" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/login.rs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="230">
+          <caret line="10" column="1" lean-forward="true" selection-start-line="10" selection-start-column="1" selection-end-line="10" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/docker-compose.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="279">
+          <caret line="23" column="10" selection-start-line="23" selection-start-column="10" selection-end-line="23" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/db.rs">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/models/mod.rs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" selection-start-line="3" selection-end-line="3" selection-end-column="10" />
+>>>>>>> dev
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/controllers/login.rs">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/src/controllers/mod.rs">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -709,25 +930,84 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1633">
           <caret line="71" column="2" selection-start-line="71" selection-start-column="2" selection-end-line="71" selection-end-column="2" />
+=======
+    <entry file="file://$PROJECT_DIR$/src/utils/mod.rs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="1" column="4" selection-start-line="1" selection-start-column="4" selection-end-line="1" selection-end-column="4" />
+>>>>>>> dev
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/mod.rs">
+    <entry file="file://$PROJECT_DIR$/diesel.toml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/start.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="10" column="9" selection-start-line="10" selection-start-column="9" selection-end-line="10" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main.rs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" selection-start-line="4" selection-end-line="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tls/key.pem">
       <provider selected="true" editor-type-id="text-editor">
         <state>
-          <caret column="14" selection-start-column="14" selection-end-column="14" />
+          <caret column="31" selection-end-column="31" />
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/src/routes/blog.rs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="230">
           <caret line="10" column="1" selection-start-line="10" selection-start-column="1" selection-end-line="10" selection-end-column="1" />
+=======
+    <entry file="file://$PROJECT_DIR$/tls/cert.pem">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="400">
+          <caret line="30" column="25" selection-start-line="30" selection-start-column="25" selection-end-line="30" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Cargo.toml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="18" column="18" selection-start-line="18" selection-start-column="18" selection-end-line="18" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/middlewares.rs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="8" selection-start-line="8" selection-end-line="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/extractors.rs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="8" column="21" selection-start-line="8" selection-start-column="21" selection-end-line="8" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/models/users.rs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="21" column="1" selection-start-line="21" selection-start-column="1" selection-end-line="21" selection-end-column="1" />
+>>>>>>> dev
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/lib.rs">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="161">
           <caret line="25" column="33" selection-start-line="25" selection-start-column="33" selection-end-line="25" selection-end-column="33" />
         </state>
@@ -758,6 +1038,31 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="322">
           <caret line="16" column="27" selection-start-line="16" selection-start-column="27" selection-end-line="16" selection-end-column="27" />
+=======
+        <state relative-caret-position="465">
+          <caret line="31" column="9" selection-start-line="31" selection-start-column="9" selection-end-line="31" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/token.rs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="117">
+          <caret line="73" column="21" selection-start-line="73" selection-start-column="21" selection-end-line="73" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/schema.rs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="151">
+          <caret line="61" column="43" selection-start-line="61" selection-start-column="43" selection-end-line="61" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/auth.rs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="260">
+          <caret line="44" column="14" lean-forward="true" selection-start-line="44" selection-start-column="14" selection-end-line="44" selection-end-column="14" />
+>>>>>>> dev
         </state>
       </provider>
     </entry>
