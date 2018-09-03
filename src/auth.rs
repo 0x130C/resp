@@ -1,3 +1,5 @@
+use std::sync::Arc;
+use std::cell::RefCell;
 use futures::future::{err as FutErr, ok as FutOk, FutureResult};
 use futures::Future;
 use actix_web::error::{Error, ResponseError, Result};
@@ -10,6 +12,8 @@ pub struct RAuth {
     inner: RAuthInner
 
 }
+
+pub struct RAuthImplCell(RefCell<Box<RAuthImpl>>);
 
 struct RAuthInner {
     services: Vec<String>
@@ -46,8 +50,13 @@ pub trait RAuthImpl {
     type User;
     type AuthFuture: Future<Item = Self::User, Error = Error>;
 
-    fn authentice(self, req: &mut HttpRequest, config: Self::Config) -> RResult<Self::User>;
+    fn verify(self, req: &mut HttpRequest) -> Self::AuthFuture;
+}
 
+pub struct BasicAuth ;
+pub struct BasicInfo {
+    username: String,
+    password: String
 }
 
 

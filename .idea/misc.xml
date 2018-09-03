@@ -4,6 +4,7 @@
     <cargoProject FILE="$PROJECT_DIR$/Cargo.toml" />
     <cargoProject FILE="$PROJECT_DIR$/client/Cargo.toml" />
     <cargoProject FILE="$PROJECT_DIR$/build_tools/Cargo.toml" />
+    <cargoProject FILE="$PROJECT_DIR$/lib/passport/Cargo.toml" />
   </component>
   <component name="JavaScriptSettings">
     <option name="languageLevel" value="ES6" />

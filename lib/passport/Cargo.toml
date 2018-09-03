@@ -1,0 +1,13 @@
+[package]
+name = "passport"
+version = "0.1.0"
+authors = ["0x130C <0x130c@gmail.com>"]
+
+[dependencies]
+log = "0.4.0"
+actix-web = { version = "0.7.4" }
+futures = "0.1.23"
+parking_lot = "0.6.4"
+
+[dev-dependencies]
+env_logger = "0.5.10"
