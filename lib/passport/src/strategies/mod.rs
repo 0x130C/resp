@@ -7,7 +7,7 @@ mod basic;
 use actix_web::error::ParseError;
 
 pub use self::basic::{BasicStrategy, BasicInfo};
-
+pub use super::error::ExtractError;
 
 pub enum StrategyInfo {
     Basic(BasicInfo),
@@ -16,5 +16,5 @@ pub enum StrategyInfo {
 
 pub trait PassportStrategy<S> {
 
-    fn extract_info(&self, &HttpRequest<S>,) -> FutureResult<StrategyInfo, ParseError>;
+    fn extract_info(&self, &HttpRequest<S>,) -> FutureResult<StrategyInfo, ExtractError>;
 }

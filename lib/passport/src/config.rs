@@ -1,5 +1,5 @@
 pub struct PassportConfig {
-    manager_strategies: Bool,
+   pub manager_strategies: bool,
 
 }
 

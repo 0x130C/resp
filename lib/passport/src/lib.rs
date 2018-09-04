@@ -2,6 +2,9 @@
 extern crate actix_web;
 extern crate futures;
 extern crate parking_lot;
+#[macro_use]
+extern crate failure;
+extern crate base64;
 
 use std::collections::{HashMap, HashSet};
 use std::rc::Rc;
@@ -68,7 +71,9 @@ impl<S: 'static> Middleware<S> for Passport<S> {
                 if self.config.manager_strategies {
                     req.extensions_mut().insert(arc.clone());
                 }
-
+                for strategy in arc.0.lock().values() {
+                    strategy.extract_info(req);
+                }
                 Ok(Started::Done)
             }
             PassportStrategies::NotAvailable => {
@@ -87,7 +92,7 @@ impl<S: 'static> Middleware<S> for Passport<S> {
         Ok(Response::Done(resp))
     }
 }
-
+//, &Box<PassportStrategy<S>>
 pub type AuthHandler<S> = Fn(&HttpRequest<S>) -> Result<Started>;
 
 pub struct PassportCell<S>(Mutex<HashMap<String, Box<PassportStrategy<S>>>>);
@@ -118,6 +123,13 @@ impl<S> PassportStrategies<S> {
                 warn!("Strategy {} not register before!", strategy_name);
             }
         }
+    }
+
+    pub fn has_strategy(&self, strategy_name: &str) -> bool {
+        if let PassportStrategies::Available(ref arc) = self {
+            return arc.0.lock().contains_key(strategy_name);
+        }
+        false
     }
 }
 
@@ -196,7 +208,7 @@ mod tests {
         });
 
         let mut request = srv.get().uri(srv.url("/")).finish().unwrap();
-        request.headers_mut().append(header::AUTHORIZATION, header::HeaderValue::from_static("Basic abc"));
+        request.headers_mut().append(header::AUTHORIZATION, header::HeaderValue::from_static("Basic abc:"));
         let response  = srv.execute(request.send()).unwrap();
         assert!(response.status().is_success());
 
@@ -211,6 +223,12 @@ mod tests {
                 }))
                 .resource("/", |r| {
                     r.with(|strategies: PassportStrategies<()>| {
+                        let valid = if let PassportStrategies::NotAvailable = strategies {
+                            true
+                        } else {
+                            false
+                        };
+                        assert_eq!(valid, true);
                         "test"
                     })
                 })
@@ -227,20 +245,20 @@ mod tests {
             App::new()
                 .middleware(Passport::new(|_|{
                     Ok(Started::Done)
-                }))
+                }).with_strategies_manager())
                 .resource("/", |r| {
                     r.with(|mut strategies: PassportStrategies<()>| {
-                        strategies.add(
-                            "Basic",
-                            Box::new(BasicStrategy{})
-                        );
+                        if let PassportStrategies::Available(_) = strategies {
+                            strategies.add(
+                                "Basic",
+                                Box::new(BasicStrategy{})
+                            );
+                            assert!(strategies.has_strategy("Basic"));
+                        }
                         "test"
                     })
                 })
         });
-
-        let request = srv.get().uri(srv.url("/")).finish().unwrap();
-        let response = srv.execute(request.send()).unwrap();
 
         let request = srv.get().uri(srv.url("/")).finish().unwrap();
         let response = srv.execute(request.send()).unwrap();
