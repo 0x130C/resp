@@ -90,16 +90,52 @@ mod tests {
     use super::*;
     use super::super::super::Passport;
     use futures::Future;
-    use actix_web::{App, test};
-    use actix_web::{http::header, middleware::Started};
+    use actix_web::{App, test, Result, HttpResponse};
+    use actix_web::{http::header, middleware::{Middleware, Started, Response, Finished}};
 
-    struct TestMiddware;
+    struct MiddlewareTest01;
 
+    impl<S> Middleware<S> for MiddlewareTest01 {
+        fn start(&self, req: &HttpRequest<S>) -> Result<Started> {
+            println!("Middleware start 01");
+            Ok(Started::Done)
+        }
+        fn response(&self, req: &HttpRequest<S>, resp: HttpResponse) -> Result<Response> {
+            println!("Middleware response 01");
+            Ok(Response::Done(resp))
+        }
+
+        /// Method is called after body stream get sent to peer.
+        fn finish(&self, req: &HttpRequest<S>, resp: &HttpResponse) -> Finished {
+            println!("Middleware finish 01");
+            Finished::Done
+        }
+    }
+
+    struct MiddlewareTest02;
+
+    impl<S> Middleware<S> for MiddlewareTest02 {
+        fn start(&self, req: &HttpRequest<S>) -> Result<Started> {
+            println!("Middleware start 02");
+            Ok(Started::Done)
+        }
+        fn response(&self, req: &HttpRequest<S>, resp: HttpResponse) -> Result<Response> {
+            println!("Middleware response 02");
+            Ok(Response::Done(resp))
+        }
+
+        /// Method is called after body stream get sent to peer.
+        fn finish(&self, req: &HttpRequest<S>, resp: &HttpResponse) -> Finished {
+            println!("Middleware finish 02");
+            Finished::Done
+        }
+    }
 
     #[test]
     fn test_basic_strategy_success() {
         let mut srv = test::TestServer::with_factory(|| {
             App::new()
+                .middleware({ MiddlewareTest01 })
                 .middleware(Passport::new(|req|{
                     let basic = BasicStrategy{};
                     let info = basic.extract_info(req).wait().unwrap();
@@ -115,6 +151,7 @@ mod tests {
                     )
                 )
                 .resource("/", |r| {
+                    r.middleware(MiddlewareTest02);
                     r.f(|req| {
                         "test"
                     })
