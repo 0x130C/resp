@@ -16,6 +16,7 @@ use std::result;
 use actix_web::{FromRequest, HttpRequest, HttpResponse, Error, Result, middleware::{Middleware, Response,Started, Finished}};
 use actix_web::http::header::{self, HeaderValue};
 use futures::future::{err as FutErr, ok as FutOk, FutureResult};
+use futures::Future;
 
 
 pub mod strategies;
@@ -27,7 +28,7 @@ use strategies::BasicStrategy;
 use strategies::PassportStrategy;
 use strategies::StrategyInfo;
 
-
+use PassportStrategies::*;
 
 
 
@@ -37,13 +38,18 @@ pub struct Passport<S> {
     handler: Box<AuthHandler<S>>
 }
 
+pub enum PassportStrategies<S> {
+    NotAvailable,
+    Available(Arc<PassportCell<S>>)
+}
+
 impl<S> Passport<S> {
 
     pub fn new<F>(h: F) -> Self
-        where F: Fn(&HttpRequest<S>) -> Result<Started>  + 'static{
+        where F: Fn(StrategyInfo, &HttpRequest<S>) -> Result<Response>  + 'static{
         Passport {
             config: PassportConfig::default(),
-            strategies: PassportStrategies(Arc::new(PassportCell(Mutex::new(HashMap::new())))),
+            strategies: PassportStrategies::Available(Arc::new(PassportCell(Mutex::new(HashMap::new())))),
             handler: Box::new(h)
         }
     }
@@ -66,8 +72,10 @@ impl<S> Passport<S> {
 
 impl<S: 'static> Middleware<S> for Passport<S> {
     fn start(&self, req: &HttpRequest<S>) -> Result<Started> {
-        if self.config.manager_strategies {
-            req.extensions_mut().insert(self.strategies.0.clone());
+        if let Available(ref arc) = self.strategies {
+            if self.config.manager_strategies {
+                req.extensions_mut().insert(arc.clone());
+            }
         }
         Ok(Started::Done)
     }
@@ -75,8 +83,6 @@ impl<S: 'static> Middleware<S> for Passport<S> {
     fn response(
         &self, req: &HttpRequest<S>, resp: HttpResponse,
     ) -> Result<Response> {
-
-
         if let Some(t) = req.extensions().get::<Arc<Payload>>() {
             println!("Middleware main: Get gate type successed.");
             let payload = t;
@@ -87,13 +93,15 @@ impl<S: 'static> Middleware<S> for Passport<S> {
                 },
                 _ => {}
             }
-            let arc = self.strategies.0.as_ref();
-            let guard = arc.0.lock();
-            let strategy = guard.get(strategy_name).expect(format!("Strategy {} not registered", strategy_name).as_ref());
-            let info = strategy.extract_info(req);
-            info.map_err(|| {
-
-            })
+            if let Available(ref arc) = self.strategies {
+                let guard = arc.0.lock();
+                let strategy = guard.get(strategy_name).expect(format!("Strategy {} not registered", strategy_name).as_ref());
+                let fut = strategy.extract_info(req);
+                fut.from_err()
+                .and_then(|info|{
+                    (self.handler)(info, req)
+                });
+           }
         }
         println!("Middleware main: response");
         Ok(Response::Done(resp))
@@ -106,53 +114,53 @@ impl<S: 'static> Middleware<S> for Passport<S> {
         Finished::Done
     }
 }
-//, &Box<PassportStrategy<S>>
-pub type AuthHandler<S> = Fn(&HttpRequest<S>) -> Result<Started>;
+pub type AuthHandler<S> = Fn(StrategyInfo, &HttpRequest<S>) -> Result<Response>;
 
 pub struct PassportCell<S>(Mutex<HashMap<String, Box<PassportStrategy<S>>>>);
-
-pub struct PassportStrategies<S>(Arc<PassportCell<S>>);
-
 
 
 impl<S> PassportStrategies<S> {
     pub fn add(&self, strategy_name: &str, strategy: Box<PassportStrategy<S>>) {
-        let arc = self.0.as_ref();
-        let  mut strategies = arc.0.lock();
-        match strategies.get(strategy_name) {
-            Some(_) => {
-                warn!("Strategy {} really registered!", strategy_name);
-            },
-            _ => {
-                strategies.insert(strategy_name.to_string(), strategy);
+        if let Available(ref arc) = self {
+            let  mut strategies = arc.0.lock();
+            match strategies.get(strategy_name) {
+                Some(_) => {
+                    warn!("Strategy {} really registered!", strategy_name);
+                },
+                _ => {
+                    strategies.insert(strategy_name.to_string(), strategy);
+                }
             }
         }
     }
 
     pub fn remove(&self, strategy_name: &str)  {
-        let arc = self.0.as_ref();
-        if let None = arc.0.lock().remove(strategy_name) {
-            warn!("Strategy {} not register before!", strategy_name);
+        if let Available(ref arc) = self {
+            if let None = arc.0.lock().remove(strategy_name) {
+                warn!("Strategy {} not register before!", strategy_name);
+            }
         }
     }
 
     pub fn has_strategy(&self, strategy_name: &str) -> bool {
-        let arc = self.0.as_ref();
-        arc.0.lock().contains_key(strategy_name)
+        if let Available(ref arc) = self {
+            return arc.0.lock().contains_key(strategy_name);
+        }
+        false
     }
 }
 
 
 pub trait RequestPassportStrategies<S> {
-    fn passport_strategies(&self) -> Option<PassportStrategies<S>>;
+    fn passport_strategies(&self) -> PassportStrategies<S>;
 }
 
 impl<S: 'static> RequestPassportStrategies<S> for HttpRequest<S> {
-    fn passport_strategies(&self) -> Option<PassportStrategies<S>> {
-        if let Some(t) = self.extensions().get::<Arc<PassportCell<S>>>() {
-            return Some(PassportStrategies(Arc::clone(&t)));
+    fn passport_strategies(&self) -> PassportStrategies<S> {
+        match self.extensions().get::<Arc<PassportCell<S>>>() {
+            Some(t) => Available(Arc::clone(&t)),
+            None => NotAvailable
         }
-        None
     }
 }
 
@@ -162,7 +170,7 @@ impl<S: 'static> FromRequest<S> for PassportStrategies<S> {
 
     #[inline]
     fn from_request(req: &HttpRequest<S>, _cfg: &Self::Config) -> Self::Result {
-        req.passport_strategies().unwrap()
+        req.passport_strategies()
     }
 }
 
@@ -244,7 +252,7 @@ mod tests {
 
         let mut srv = test::TestServer::with_factory(|| {
             App::new()
-                .middleware(Passport::new(|_|{
+                .middleware(Passport::new(|_, _|{
                     Ok(Started::Done)
                 }))
                 .resource("/", |r| {
@@ -265,7 +273,7 @@ mod tests {
     fn passport_with_basic_stragery() {
         let mut srv = test::TestServer::with_factory(|| {
             App::new()
-                .middleware(Passport::new(|_|{
+                .middleware(Passport::new(|_,_|{
                     Ok(Started::Done)
                 })
                     .register(
@@ -292,7 +300,7 @@ mod tests {
     fn passport_extractor() {
         let mut srv = test::TestServer::with_factory(|| {
             App::new()
-                .middleware(Passport::new(|_| {
+                .middleware(Passport::new(|_, _| {
                     Ok(Started::Done)
                 }))
                 .resource("/", |r| {
@@ -312,12 +320,12 @@ mod tests {
     fn passport_extractor_dynamic_register() {
         let mut srv = test::TestServer::with_factory(|| {
             App::new()
-                .middleware(Passport::new(|_|{
+                .middleware(Passport::new(|_,_|{
                     Ok(Started::Done)
                 }).with_strategies_manager())
                 .resource("/", |r| {
-                    r.with(|mut strategies: Option<PassportStrategies<()>>| {
-                        if let Some(strategies) = strategies {
+                    r.with(|mut strategies: PassportStrategies<()>| {
+                        if let Available(_) = strategies {
                             strategies.add(
                                 "Basic",
                                 Box::new(BasicStrategy{})

@@ -136,9 +136,7 @@ mod tests {
         let mut srv = test::TestServer::with_factory(|| {
             App::new()
                 .middleware({ MiddlewareTest01 })
-                .middleware(Passport::new(|req|{
-                    let basic = BasicStrategy{};
-                    let info = basic.extract_info(req).wait().unwrap();
+                .middleware(Passport::new(|info, req|{
                     if let StrategyInfo::Basic(info) = info {
                         assert_eq!(info.username, "Aladdin");
                         assert_eq!(info.password, None);
