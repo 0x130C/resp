@@ -14,7 +14,7 @@ pub enum StrategyInfo {
     None
 }
 
-pub trait PassportStrategy<S> {
+pub trait PassportStrategy<S: 'static> {
 
     fn extract_info(&self, &HttpRequest<S>,) -> FutureResult<StrategyInfo, ExtractError>;
 }

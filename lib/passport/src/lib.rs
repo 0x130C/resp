@@ -105,6 +105,8 @@ where
 {
     fn handle(&self, info: StrategyInfo, req: &HttpRequest<S>, store: bool) -> bool {
         self.h.handle(info, req);
+
+        true
     }
 }
 
@@ -129,12 +131,12 @@ impl<S: 'static> Passport<S> {
         self
     }
 
-    pub fn register(mut self, strategy_name: &str, strategy: Box<PassportStrategy<S>>) -> Self {
+    pub fn register(self, strategy_name: &str, strategy: Box<PassportStrategy<S>>) -> Self {
         self.inner.strategies.add(strategy_name, strategy);
         self
     }
 
-    pub fn unregister(mut self, strategy_name: &str) -> Self {
+    pub fn unregister(self, strategy_name: &str) -> Self {
         self.inner.strategies.remove(strategy_name);
         self
     }
@@ -157,26 +159,23 @@ impl<S: 'static> Middleware<S> for Passport<S> {
         println!("Middleware main: response");
         if let Some(payload) = req.extensions().get::<Arc<Payload>>() {
             println!("Middleware main: Get gate type successed.");
+
             let strategy_name: &str = payload._type.as_ref();
-            match strategy_name {
-                "Basic" => {
-                    println!("Middleware main: Basic gate type.");
-                },
-                _ => {}
-            }
+//            let store_session = payload.config.store_session;
+            let handler = self.inner.handler.clone();
+            let req = req.clone();
             return match self.inner.strategies {
                 Available(ref arc) => {
                     let guard = arc.0.lock();
                     let strategy = guard.get(strategy_name).expect(format!("Strategy {} not registered", strategy_name).as_ref());
                     //                let req = req.clone();
-                    let fut = strategy.extract_info(req)
-                        .then(move |res| match res {
-                            Ok(info) => {
-                                let a = self.inner.handler.as_ref();
-//                                self.inner.handler.as_ref() (info, req);
-                                FutOk(resp)
-                            },
-                            Err(e) => FutErr(ErrorUnauthorized(e))
+                    let fut = strategy.extract_info(&req)
+                        .map_err(|e| {
+                            ErrorUnauthorized(e)
+                        })
+                        .and_then(move |info|  {
+                            handler.handle(info, &req, true);
+                            FutOk(resp)
                         });
                     Ok(Response::Future(Box::new(fut)))
                 },
@@ -272,10 +271,12 @@ impl Default for Config {
     }
 }
 
+
 pub struct Payload {
     _type: String,
     config: Config
 }
+
 
 pub struct Authenticate(Arc<Payload>);
 
@@ -352,32 +353,31 @@ mod tests {
 
     }
 
-//    #[test]
-//    fn passport_with_basic_stragery() {
-//        let mut srv = test::TestServer::with_factory(|| {
-//            App::new()
-//                .middleware(Passport::new(|_,_|{
-//                    FutOk(())
-//                })
-//                    .register(
-//                        "Basic",
-//                        Box::new(BasicStrategy{})
-//                    )
-//                )
-//                .resource("/", |r| {
-//                    r.middleware(auth!("Basic"));
-//                    r.f(|req| {
-//                        "test"
-//                    })
-//                })
-//        });
-//
-//        let mut request = srv.get().uri(srv.url("/")).finish().unwrap();
-//        request.headers_mut().append(header::AUTHORIZATION, header::HeaderValue::from_static("Basic abc:"));
-//        let response  = srv.execute(request.send()).unwrap();
-//        assert!(response.status().is_success());
-//
-//    }
+    #[test]
+    fn passport_with_basic_stragery() {
+        let mut srv = test::TestServer::with_factory(|| {
+            App::new()
+                .middleware(Passport::new(authenticate)
+                    .register(
+                        "Basic",
+                        Box::new(BasicStrategy{})
+                    )
+                )
+                .resource("/", |r| {
+                    r.middleware(auth!("Basic"));
+                    r.f(|req| {
+                        "test"
+                    })
+                })
+        });
+
+        let mut request = srv.get().uri(srv.url("/")).finish().unwrap();
+        request.headers_mut().append(header::AUTHORIZATION, header::HeaderValue::from_static("Basic YWJjOg=="));
+        let response  = srv.execute(request.send()).unwrap();
+        println!("{}", response.status());
+        assert!(response.status().is_success());
+
+    }
 //
 //    #[test]
 //    fn passport_extractor() {

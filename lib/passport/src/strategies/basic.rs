@@ -130,6 +130,21 @@ mod tests {
             Finished::Done
         }
     }
+    #[test]
+    fn test_parser_header() {
+        let header = header::HeaderValue::from_static("Basic YWJjOg==");
+        let strategy = BasicStrategy{};
+        let result = strategy.parse_header(&header).unwrap();
+        match result {
+            StrategyInfo::Basic(info) => {
+                assert_eq!(info.username, "abc");
+                assert_eq!(info.password, None)
+            },
+            _ => {
+                assert!(false)
+            }
+        }
+    }
 
 //    #[test]
 //    fn test_basic_strategy_success() {
